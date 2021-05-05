@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security;
@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
 
     public string goal ="Chest";
     public string nextScene = "Menu"; 
+public string restart ="Monster";
+
 
     Vector3 velocity;
    
@@ -26,7 +28,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+ 
     }
 
     // Update is called once per frame
@@ -50,8 +52,15 @@ public class Movement : MonoBehaviour
     {
         if (hit.gameObject.CompareTag(goal))
         {
-            Debug.Log("Yo Ho Ho! And a Bottle of Rum");
             SceneManager.LoadScene(nextScene);
+        } 
+        if (hit.gameObject.CompareTag(restart))
+        {
+		Vector3 tpLocation = new Vector3(526, 1, 36);
+ 		controller.enabled = false;
+            	controller.transform.position=tpLocation;
+		controller.enabled = true;
         }        
+       
     }
 }
